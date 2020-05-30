@@ -10,4 +10,5 @@
     <dimen name="size16sp">16sp</dimen>
     <dimen name="size18sp">18sp</dimen>
     <dimen name="size0dp">0dp</dimen>
+    <dimen name="size8dp">8dp</dimen>
 </resources>
