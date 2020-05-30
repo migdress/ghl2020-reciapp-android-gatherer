@@ -6,11 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.HomeActivity">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/btmNavView"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarHome"
+        android:layout_width="@dimen/size0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tbHome"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/grayF5F5F5"
+            android:elevation="@dimen/size8dp"
+            app:logo="@drawable/ic_account"
+            app:title="@string/title_hello"
+            tools:subtitle="Freddy Esneyder Jaimes Ruiz" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="@dimen/size0dp"
+        android:layout_height="@dimen/size0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btmNavView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarHome">
 
         <fragment
             android:id="@+id/fragNavHost"
@@ -18,13 +40,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/bottom_nav_graph" />
+            app:navGraph="@navigation/bottom_nav_graph"
+            tools:ignore="FragmentTagUsage" />
 
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/btmNavView"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/size0dp"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
         app:layout_constraintBottom_toBottomOf="parent"

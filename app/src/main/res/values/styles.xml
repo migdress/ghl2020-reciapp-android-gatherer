@@ -4,11 +4,13 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/green2E7C31</item>
         <item name="colorPrimaryVariant">@color/green60AC5D</item>
-        <item name="colorPrimaryDark">@color/green004F04</item>
+        <item name="colorPrimaryDark">@color/green005005</item>
         <item name="colorSecondary">@color/white</item>
         <item name="colorAccent">@color/gray777777</item>
 
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColorPrimary">@color/green005005</item>
+        <item name="android:textColorSecondary">@color/green005005</item>
+        <item name="android:windowBackground">@color/grayF5F5F5</item>
         <item name="android:fontFamily">@font/segoe_ui_semibold</item>
 
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
@@ -20,7 +22,7 @@
     </style>
 
     <style name="ThemeOverlay.App.BottomNavigationView" parent="">
-        <item name="colorPrimary">@color/green004F04</item>
+        <item name="colorPrimary">@color/green005005</item>
         <item name="colorOnPrimary">@color/white</item>
     </style>
 

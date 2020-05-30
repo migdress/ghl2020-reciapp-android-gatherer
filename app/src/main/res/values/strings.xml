@@ -12,4 +12,5 @@
     <string name="title_available_routes">Rutas Disponibles</string>
     <string name="title_my_routes">Mis Rutas</string>
     <string name="title_info">Información</string>
+    <string name="title_hello">Hola!</string>
 </resources>
