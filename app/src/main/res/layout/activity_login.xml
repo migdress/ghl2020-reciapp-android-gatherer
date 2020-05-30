@@ -79,6 +79,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txvSubtitle">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -100,6 +101,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tilUsername">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieUserPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
