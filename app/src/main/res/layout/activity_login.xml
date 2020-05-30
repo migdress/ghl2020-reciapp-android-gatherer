@@ -47,7 +47,7 @@
             android:layout_marginTop="@dimen/size24dp"
             android:text="@string/title_welcome"
             android:textColor="@color/green005005"
-            android:textSize="@dimen/size16sp"
+            android:textSize="@dimen/size24sp"
             app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -60,7 +60,7 @@
             android:layout_marginHorizontal="@dimen/size16dp"
             android:text="@string/title_enter_app"
             android:textColor="@color/green005005"
-            android:textSize="@dimen/size12sp"
+            android:textSize="@dimen/size16sp"
             app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -71,6 +71,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="@dimen/size0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size16dp"
             android:layout_marginHorizontal="@dimen/size16dp"
             android:hint="@string/hint_user"
             app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
@@ -107,7 +108,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogin"
             style="@style/ButtonPrimary"
             android:layout_width="@dimen/size0dp"
