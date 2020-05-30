@@ -9,4 +9,7 @@
     <color name="gray777777">#777777</color>
 
     <color name="white">#FFFFFF</color>
+
+    <color name="black200">#B3B3B3</color>
+    <color name="black500">#666666</color>
 </resources>
