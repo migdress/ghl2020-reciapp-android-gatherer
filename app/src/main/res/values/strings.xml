@@ -1,3 +1,15 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="es">
     <string name="app_name">ReciApp Gatherer</string>
+
+    <string name="btn_login">Ingresar</string>
+
+    <string name="hint_user">Usuario</string>
+    <string name="hint_password">Contraseña</string>
+
+    <string name="title_welcome">Bienvenido!</string>
+    <string name="title_enter_app">Ingrese a ReciApp Recolector</string>
+    <string name="title_available_routes">Rutas Disponibles</string>
+    <string name="title_my_routes">Mis Rutas</string>
+    <string name="title_info">Información</string>
 </resources>
