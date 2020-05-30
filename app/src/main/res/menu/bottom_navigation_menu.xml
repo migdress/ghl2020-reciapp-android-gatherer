@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/routesFragment"
+        android:icon="@drawable/ic_available_routes"
+        android:title="@string/title_available_routes" />
+    <item
+        android:id="@+id/myRoutesFragment"
+        android:icon="@drawable/ic_my_routes"
+        android:title="@string/title_my_routes" />
+    <item
+        android:id="@+id/informationFragment"
+        android:icon="@drawable/ic_info"
+        android:title="@string/title_info" />
+</menu>
