@@ -29,6 +29,7 @@ class SplashActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     LoginActivity.launch(this)
+                    finish()
                 }
         )
     }
