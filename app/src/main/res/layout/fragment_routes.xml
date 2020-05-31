@@ -10,7 +10,7 @@
         android:id="@+id/rcvRoutes"
         android:layout_width="@dimen/size0dp"
         android:layout_height="@dimen/size0dp"
-        android:layout_marginVertical="@dimen/size12dp"
+        android:layout_marginVertical="@dimen/size8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

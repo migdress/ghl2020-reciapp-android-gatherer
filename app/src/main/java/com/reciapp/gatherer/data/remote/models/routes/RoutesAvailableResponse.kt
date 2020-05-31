@@ -17,7 +17,7 @@ data class RoutesAvailableResponse(
         val shift: String,
         @Json(name = "date")
         val date: String,
-        @Json(name = "PickingPoints")
+        @Json(name = "picking_points")
         val pickingPoints: List<PickingPointResponse>
     )
 

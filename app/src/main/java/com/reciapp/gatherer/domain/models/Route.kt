@@ -8,6 +8,7 @@ data class Route(
     val id: String,
     val materials: List<String>,
     val sector: String,
+    var status: STATUS,
     val shift: String,
     val date: String,
     val pickingPoints: List<PickingPoint>
@@ -21,4 +22,10 @@ data class Route(
         val latitude: Double,
         val longitude: Double
     ) : Parcelable
+
+    enum class STATUS {
+        AVAILABLE,
+        ASSIGNED,
+        FINISHED
+    }
 }

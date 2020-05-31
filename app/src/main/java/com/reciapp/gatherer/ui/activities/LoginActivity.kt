@@ -28,11 +28,11 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        initListener()
+        initListeners()
         initSubscriptions()
     }
 
-    private fun initListener() {
+    private fun initListeners() {
         compositeDisposable.addAll(
             tieUserName.textChanges()
                 .mergeWith(tieUserPassword.textChanges())

@@ -10,6 +10,7 @@ class RouteMapper {
             id = routeResponse.id,
             materials = routeResponse.materials,
             sector = routeResponse.sector,
+            status = Route.STATUS.AVAILABLE,
             shift = routeResponse.shift,
             date = routeResponse.date,
             pickingPoints = routeResponse.pickingPoints.map {

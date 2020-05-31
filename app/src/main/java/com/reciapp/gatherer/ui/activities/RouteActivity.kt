@@ -7,8 +7,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Looper
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Observer
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -19,32 +21,109 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
+import com.jakewharton.rxbinding3.view.clicks
 import com.reciapp.gatherer.R
 import com.reciapp.gatherer.domain.models.Route
+import com.reciapp.gatherer.extensions.ui.hideLoaderView
+import com.reciapp.gatherer.extensions.ui.showLoaderView
+import com.reciapp.gatherer.ui.states.RouteAssignState
+import com.reciapp.gatherer.ui.viewmodels.RouteViewModel
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_route.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
 
+    private val routeViewModel: RouteViewModel by viewModel {
+        parametersOf(intent?.extras?.getParcelable(EXTRA_ROUTE)!!)
+    }
+
     private lateinit var mapView: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var locationCallback: LocationCallback
+    private val locationCallback = getLocationCallback()
+
+    private val compositeDisposable: CompositeDisposable by lazy {
+        CompositeDisposable()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_route)
-        initToolbar()
+        initSubscriptions()
+        initListeners()
+        initViews()
         initMap()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        fusedLocationClient.removeLocationUpdates(locationCallback)
+        if (::fusedLocationClient.isInitialized) {
+            fusedLocationClient.removeLocationUpdates(locationCallback)
+        }
     }
 
-    private fun initToolbar() {
+    private fun initSubscriptions() {
+        routeViewModel.getRouteAssignStateLiveData().observe(this, Observer {
+            when (it) {
+                is RouteAssignState.Loading -> {
+                    showLoaderView()
+                }
+                is RouteAssignState.Success -> {
+                    hideLoaderView()
+                    getLocationPermission()
+                    setTitleButton(routeViewModel.route)
+                }
+                is RouteAssignState.Failure -> {
+                    hideLoaderView()
+                    Toast.makeText(this, R.string.error_server, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
+
+    private fun initListeners() {
         tbRoute.setNavigationOnClickListener {
             onBackPressed()
+        }
+        compositeDisposable.add(
+            btnAction.clicks()
+                .subscribe({
+                    when (routeViewModel.route.status) {
+                        Route.STATUS.AVAILABLE -> {
+                            routeViewModel.assignRoute()
+                        }
+                        Route.STATUS.ASSIGNED -> {
+                            routeViewModel.markPointComplete()
+                        }
+                        Route.STATUS.FINISHED -> {
+                            finish()
+                        }
+                    }
+                }, {
+                    it.printStackTrace()
+                })
+        )
+    }
+
+    private fun initViews() {
+        tbRoute.title = routeViewModel.route.sector
+        setTitleButton(routeViewModel.route)
+    }
+
+    private fun setTitleButton(route: Route) {
+        when (route.status) {
+            Route.STATUS.AVAILABLE -> {
+                btnAction.setText(R.string.btn_i_collect)
+            }
+            Route.STATUS.ASSIGNED -> {
+                btnAction.setText(R.string.btn_pick_up_point)
+            }
+            Route.STATUS.FINISHED -> {
+                btnAction.setText(R.string.btn_finish_route)
+            }
         }
     }
 
@@ -56,15 +135,14 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mapView = googleMap
-        mapView.moveCamera(
-            CameraUpdateFactory.newLatLngZoom(
-                LatLng(
-                    DEFAULT_LOCATION.latitude,
-                    DEFAULT_LOCATION.longitude
-                ), DEFAULT_ZOOM
-            )
-        )
-        getLocationPermission()
+        setDataMap()
+    }
+
+    private fun setDataMap() {
+        routeViewModel.route.pickingPoints.firstOrNull()?.let {
+            moveCamera(LatLng(it.latitude, it.longitude))
+        }
+        setMarkets(routeViewModel.route.pickingPoints)
     }
 
     private fun getLocationPermission() {
@@ -112,8 +190,10 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
 
     @SuppressLint("MissingPermission")
     private fun initLocation() {
-        mapView.isMyLocationEnabled = true
-        mapView.uiSettings.isMyLocationButtonEnabled = true
+        if (::mapView.isInitialized) {
+            mapView.isMyLocationEnabled = true
+            mapView.uiSettings.isMyLocationButtonEnabled = true
+        }
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -122,21 +202,6 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
         locationRequest.interval = UPDATE_INTERVAL
         locationRequest.fastestInterval = FASTEST_INTERVAL
 
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult?) {
-                locationResult ?: return
-                val location = locationResult.lastLocation
-                mapView.moveCamera(
-                    CameraUpdateFactory.newLatLngZoom(
-                        LatLng(
-                            location.latitude,
-                            location.longitude
-                        ), DEFAULT_ZOOM
-                    )
-                )
-            }
-        }
-
         fusedLocationClient.requestLocationUpdates(
             locationRequest,
             locationCallback,
@@ -144,17 +209,46 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
         )
     }
 
+    private fun getLocationCallback(): LocationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult?) {
+            locationResult ?: return
+            val location = locationResult.lastLocation
+            if (::mapView.isInitialized) {
+                moveCamera(LatLng(location.latitude, location.longitude))
+            }
+        }
+    }
+
+    private fun setMarkets(points: List<Route.PickingPoint>) {
+        runOnUiThread {
+            mapView.clear()
+            points.forEach { point ->
+                mapView.addMarker(
+                    MarkerOptions()
+                        .position(LatLng(point.latitude, point.longitude))
+                        .title(point.addressFirst)
+                )
+            }
+
+        }
+    }
+
+    private fun moveCamera(latLng: LatLng) {
+        runOnUiThread {
+            mapView.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM))
+        }
+    }
+
     companion object {
         private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1001
         private const val UPDATE_INTERVAL = (10 * 1000).toLong()
         private const val FASTEST_INTERVAL: Long = 2000
         private const val DEFAULT_ZOOM = 16f
-        private val DEFAULT_LOCATION = LatLng(4.6097102, -74.081749)
-        private const val ROUTE = "route"
+        private const val EXTRA_ROUTE = "route"
 
         fun launch(from: Context, route: Route) {
             from.startActivity(Intent(from, RouteActivity::class.java).apply {
-                putExtra(ROUTE, route)
+                putExtra(EXTRA_ROUTE, route)
             })
         }
     }

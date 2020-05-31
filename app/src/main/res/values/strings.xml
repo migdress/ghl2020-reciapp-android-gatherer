@@ -3,6 +3,7 @@
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyC-XJlwycf-W3RvxifB2lsQu3_Z0HT6AW0</string>
     <string name="login_base_url" translatable="false">https://login.reciapp.quartrino.com/</string>
     <string name="routes_available_base_url" translatable="false">https://get-available-routes.reciapp.quartrino.com/</string>
+    <string name="assing_route_base_url" translatable="false">https://assign-picking-route.reciapp.quartrino.com/</string>
 
     <string name="app_name">ReciApp Gatherer</string>
 
@@ -10,6 +11,9 @@
     <string name="btn_view_route">Ver Ruta</string>
     <string name="btn_view_my_route">Mi Ruta</string>
     <string name="btn_retry">Reintentar</string>
+    <string name="btn_i_collect">Yo Recojo</string>
+    <string name="btn_pick_up_point">Recoger en punto</string>
+    <string name="btn_finish_route">Terminé Ruta</string>
 
     <string name="hint_user">Usuario</string>
     <string name="hint_password">Contraseña</string>

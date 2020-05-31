@@ -2,6 +2,7 @@ package com.reciapp.gatherer.app.di
 
 import com.reciapp.gatherer.R
 import com.reciapp.gatherer.data.remote.NetworkHelper
+import com.reciapp.gatherer.data.remote.api.AssignRouteApi
 import com.reciapp.gatherer.data.remote.api.LoginApi
 import com.reciapp.gatherer.data.remote.api.RoutesAvailableApi
 import org.koin.android.ext.koin.androidContext
@@ -20,5 +21,11 @@ val apiModule: Module = module {
         NetworkHelper.getRetrofitInstance(
             androidContext().resources.getString(R.string.routes_available_base_url)
         ).create(RoutesAvailableApi::class.java)
+    }
+
+    factory {
+        NetworkHelper.getRetrofitInstance(
+            androidContext().resources.getString(R.string.assing_route_base_url)
+        ).create(AssignRouteApi::class.java)
     }
 }

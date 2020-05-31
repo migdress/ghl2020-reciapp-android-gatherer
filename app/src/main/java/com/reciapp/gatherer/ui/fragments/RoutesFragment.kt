@@ -48,7 +48,7 @@ class RoutesFragment : Fragment() {
 
     private fun initViews() {
         rcvRoutes.layoutManager =
-            LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         rcvRoutes.adapter = routesAdapter
     }
 
