@@ -1,13 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.InformationFragment">
 
-    <TextView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Information Fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="@dimen/size32dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txvTitleWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_welcome_team"
+                android:textColor="@color/green005005"
+                android:textSize="@dimen/size24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imvPerson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size8dp"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/txvTitleWelcome"
+                app:srcCompat="@drawable/ic_person" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txvDescription"
+                android:layout_width="@dimen/size0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size16dp"
+                android:text="@string/description_app"
+                android:textColor="@color/black202020"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/imvPerson" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txvAdvantage"
+                android:layout_width="@dimen/size0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size16dp"
+                android:text="@string/description_advantage"
+                android:textColor="@color/black202020"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/txvDescription" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txvDescriptionAdvantageFirst"
+                android:layout_width="@dimen/size0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size8dp"
+                android:layout_marginTop="@dimen/size16dp"
+                android:text="@string/description_advantage_first"
+                android:textColor="@color/black202020"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/lnlContentFirst"
+                app:layout_constraintTop_toBottomOf="@+id/txvAdvantage" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/lnlContentFirst"
+                android:layout_width="@dimen/size24dp"
+                android:layout_height="@dimen/size24dp"
+                android:background="@drawable/shape_counter"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/txvDescriptionAdvantageFirst"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toTopOf="@+id/txvDescriptionAdvantageFirst">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/general_first"
+                    android:textColor="@color/white" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txvDescriptionAdvantageSecond"
+                android:layout_width="@dimen/size0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size8dp"
+                android:layout_marginTop="@dimen/size16dp"
+                android:text="@string/description_advantage_second"
+                android:textColor="@color/black202020"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/lnlContentSecond"
+                app:layout_constraintTop_toBottomOf="@+id/txvDescriptionAdvantageFirst" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/lnlContentSecond"
+                android:layout_width="@dimen/size24dp"
+                android:layout_height="@dimen/size24dp"
+                android:background="@drawable/shape_counter"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/txvDescriptionAdvantageSecond"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toTopOf="@+id/txvDescriptionAdvantageSecond">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/general_second"
+                    android:textColor="@color/white" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txvDescriptionAdvantageThird"
+                android:layout_width="@dimen/size0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size8dp"
+                android:layout_marginTop="@dimen/size16dp"
+                android:text="@string/description_advantage_third"
+                android:textColor="@color/black202020"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/lnlContentThird"
+                app:layout_constraintTop_toBottomOf="@+id/txvDescriptionAdvantageSecond" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/lnlContentThird"
+                android:layout_width="@dimen/size24dp"
+                android:layout_height="@dimen/size24dp"
+                android:background="@drawable/shape_counter"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/txvDescriptionAdvantageThird"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toTopOf="@+id/txvDescriptionAdvantageThird">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/general_third"
+                    android:textColor="@color/white" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txvDescriptionAdvantageFourth"
+                android:layout_width="@dimen/size0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size8dp"
+                android:layout_marginTop="@dimen/size16dp"
+                android:text="@string/description_advantage_fourth"
+                android:textColor="@color/black202020"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/lnlContentFourth"
+                app:layout_constraintTop_toBottomOf="@+id/txvDescriptionAdvantageThird" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/lnlContentFourth"
+                android:layout_width="@dimen/size24dp"
+                android:layout_height="@dimen/size24dp"
+                android:background="@drawable/shape_counter"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toTopOf="@+id/txvDescriptionAdvantageFourth">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/general_fourth"
+                    android:textColor="@color/white" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/size24dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/size24dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

@@ -25,6 +25,19 @@
     <string name="title_info">Información</string>
     <string name="title_hello">Hola!</string>
     <string name="title_loading">Procesando solicitud…</string>
+    <string name="title_welcome_team">Bienvenido al Equipo!</string>
+
+    <string name="description_app">En Reciapp Recolector trabajamos para hacer más sencillo, práctico y formal tu trabajo de recolección.</string>
+    <string name="description_advantage">¿Qué ventajas tienes al usar Reciapp Recolector?</string>
+    <string name="description_advantage_first">Ayudas a disminuir el impacto ambiental de manera práctica y segura.</string>
+    <string name="description_advantage_second">Apoyas la formalización del trabajo de recolección</string>
+    <string name="description_advantage_third">Puedes organizar tus rutas de trabajo de manera fácil y rápida</string>
+    <string name="description_advantage_fourth">Tu trabajo de recolección será mucho más sencillo</string>
+
+    <string name="general_first">1</string>
+    <string name="general_second">2</string>
+    <string name="general_third">3</string>
+    <string name="general_fourth">4</string>
 
     <string name="warning_permission_denied">Se requiere conocer tu ubicación</string>
 

@@ -9,6 +9,7 @@
 
     <color name="white">#FFFFFF</color>
 
-    <color name="black200">#B3B3B3</color>
-    <color name="black500">#666666</color>
+    <color name="blackB3B3B3">#B3B3B3</color>
+    <color name="black666666">#666666</color>
+    <color name="black202020">#202020</color>
 </resources>
