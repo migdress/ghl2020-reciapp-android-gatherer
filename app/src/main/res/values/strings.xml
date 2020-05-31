@@ -6,6 +6,7 @@
     <string name="my_routes_base_url" translatable="false">https://get-assigned-routes.reciapp.quartrino.com/</string>
     <string name="assing_route_base_url" translatable="false">https://assign-picking-route.reciapp.quartrino.com/</string>
     <string name="start_route_base_url" translatable="false">https://start-picking-route.reciapp.quartrino.com/</string>
+    <string name="finish_point_route_base_url" translatable="false">https://finish-picking-point.reciapp.quartrino.com/</string>
 
     <string name="app_name">ReciApp Gatherer</string>
 
@@ -36,6 +37,8 @@
     <string name="description_advantage_second">Apoyas la formalización del trabajo de recolección</string>
     <string name="description_advantage_third">Puedes organizar tus rutas de trabajo de manera fácil y rápida</string>
     <string name="description_advantage_fourth">Tu trabajo de recolección será mucho más sencillo</string>
+    <string name="description_no_available_routes">No hay Rutas Diponilbes</string>
+    <string name="description_no_my_routes">No tienes Rutas Actualmente</string>
 
     <string name="general_first">1</string>
     <string name="general_second">2</string>

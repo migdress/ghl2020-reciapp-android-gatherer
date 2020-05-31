@@ -15,6 +15,7 @@ data class Route(
 ) : Parcelable {
     @Parcelize
     data class PickingPoint(
+        val id: String,
         val country: String,
         val city: String,
         val addressFirst: String,

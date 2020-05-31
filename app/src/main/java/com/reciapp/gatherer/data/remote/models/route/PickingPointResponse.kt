@@ -15,8 +15,8 @@ data class PickingPointResponse(
     val latitude: Double,
     @Json(name = "longitude")
     val longitude: Double,
-    @Json(name = "address1")
+    @Json(name = "address_1")
     val addressFirst: String,
-    @Json(name = "address2")
+    @Json(name = "address_2")
     val addressSecond: String
 )

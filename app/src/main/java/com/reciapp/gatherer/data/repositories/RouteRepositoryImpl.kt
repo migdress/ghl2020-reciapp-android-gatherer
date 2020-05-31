@@ -2,7 +2,9 @@ package com.reciapp.gatherer.data.repositories
 
 import com.reciapp.gatherer.data.mappers.RouteMapper
 import com.reciapp.gatherer.data.remote.api.AssignRouteApi
+import com.reciapp.gatherer.data.remote.api.FinishPointApi
 import com.reciapp.gatherer.data.remote.api.StartRouteApi
+import com.reciapp.gatherer.data.remote.models.point.FinishPointRequest
 import com.reciapp.gatherer.data.remote.models.route.AssignRouteRequest
 import com.reciapp.gatherer.data.remote.models.route.StartRouteRequest
 import com.reciapp.gatherer.domain.models.Route
@@ -13,6 +15,7 @@ import io.reactivex.Single
 class RouteRepositoryImpl(
     private val assignRouteApi: AssignRouteApi,
     private val startRouteApi: StartRouteApi,
+    private val finishPointApi: FinishPointApi,
     private val mapper: RouteMapper
 ) : RouteRepository {
 
@@ -21,4 +24,7 @@ class RouteRepositoryImpl(
 
     override fun startRoute(request: StartRouteRequest): Single<Route> =
         startRouteApi.startRoute(request).map { mapper.mapToDomainRoute(it.route) }
+
+    override fun finishPoint(request: FinishPointRequest): Single<Route> =
+        finishPointApi.finishPointRoute(request).map(mapper.mapToDomainRoute)
 }

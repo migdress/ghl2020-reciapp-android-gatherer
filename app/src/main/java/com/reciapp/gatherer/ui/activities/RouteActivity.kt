@@ -29,6 +29,7 @@ import com.reciapp.gatherer.domain.models.Route
 import com.reciapp.gatherer.extensions.ui.hideLoaderView
 import com.reciapp.gatherer.extensions.ui.showLoaderView
 import com.reciapp.gatherer.ui.states.AssignRouteState
+import com.reciapp.gatherer.ui.states.FinishPointRouteState
 import com.reciapp.gatherer.ui.states.StartRouteState
 import com.reciapp.gatherer.ui.viewmodels.RouteViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -99,6 +100,24 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         })
+
+        routeViewModel.getFinishPointRouteStateLiveData().observe(this, Observer {
+            when(it) {
+                is FinishPointRouteState.Loading -> {
+                    showLoaderView()
+                }
+                is FinishPointRouteState.Success -> {
+                    hideLoaderView()
+                    setTitleButton(routeViewModel.route)
+                    setDataMap()
+                }
+                is FinishPointRouteState.Failure -> {
+                    hideLoaderView()
+                    Toast.makeText(this, R.string.error_server, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
     }
 
     private fun initListeners() {

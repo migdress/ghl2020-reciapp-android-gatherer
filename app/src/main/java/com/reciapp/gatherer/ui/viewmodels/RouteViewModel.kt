@@ -6,34 +6,38 @@ import com.reciapp.gatherer.domain.models.Route
 import com.reciapp.gatherer.domain.uc.RouteUseCase
 import com.reciapp.gatherer.extensions.rx.applySchedulers
 import com.reciapp.gatherer.ui.states.AssignRouteState
+import com.reciapp.gatherer.ui.states.FinishPointRouteState
 import com.reciapp.gatherer.ui.states.StartRouteState
 
 class RouteViewModel(
     routeInitial: Route,
     private val routeUseCase: RouteUseCase,
-    private val _routeAssignState: MutableLiveData<AssignRouteState>,
-    private val _routeStartState: MutableLiveData<StartRouteState>
+    private val _assignRouteState: MutableLiveData<AssignRouteState>,
+    private val _startRouteState: MutableLiveData<StartRouteState>,
+    private val _finishPointRouteState: MutableLiveData<FinishPointRouteState>
 ) : BaseViewModel() {
 
     var route: Route = routeInitial
         private set
 
-    fun getAssignRouteStateLiveData(): LiveData<AssignRouteState> = _routeAssignState
+    fun getAssignRouteStateLiveData(): LiveData<AssignRouteState> = _assignRouteState
 
-    fun getStartRouteStateLiveData(): LiveData<StartRouteState> = _routeStartState
+    fun getStartRouteStateLiveData(): LiveData<StartRouteState> = _startRouteState
+
+    fun getFinishPointRouteStateLiveData(): LiveData<FinishPointRouteState> = _finishPointRouteState
 
     fun assignRoute() {
         addDisposable(
             routeUseCase.assignRoute(route.id)
                 .doOnSubscribe {
-                    _routeAssignState.postValue(AssignRouteState.Loading)
+                    _assignRouteState.postValue(AssignRouteState.Loading)
                 }
                 .applySchedulers()
                 .subscribe({
                     route.status = Route.STATUS.ASSIGNED
-                    _routeAssignState.value = AssignRouteState.Success
+                    _assignRouteState.value = AssignRouteState.Success
                 }, {
-                    _routeAssignState.value = AssignRouteState.Failure
+                    _assignRouteState.value = AssignRouteState.Failure
                 })
         )
     }
@@ -42,20 +46,32 @@ class RouteViewModel(
         addDisposable(
             routeUseCase.startRoute(route.id)
                 .doOnSubscribe {
-                    _routeStartState.postValue(StartRouteState.Loading)
+                    _startRouteState.postValue(StartRouteState.Loading)
                 }
                 .applySchedulers()
                 .subscribe({
                     route = it
-                    _routeStartState.value = StartRouteState.Success
+                    _startRouteState.value = StartRouteState.Success
                 }, {
-                    _routeStartState.value = StartRouteState.Failure
+                    _startRouteState.value = StartRouteState.Failure
                 })
 
         )
     }
 
     fun markPointComplete() {
-        // Service mark point
+        addDisposable(
+            routeUseCase.finishPointRoute(route.id, route.pickingPoints.first().id)
+                .doOnSubscribe {
+                    _finishPointRouteState.postValue(FinishPointRouteState.Loading)
+                }
+                .applySchedulers()
+                .subscribe({
+                    this.route = it
+                    _finishPointRouteState.value = FinishPointRouteState.Success
+                }, {
+                    _finishPointRouteState.value = FinishPointRouteState.Failure
+                })
+        )
     }
 }

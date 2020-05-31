@@ -4,6 +4,7 @@ import com.reciapp.gatherer.R
 import com.reciapp.gatherer.data.remote.NetworkHelper
 import com.reciapp.gatherer.data.remote.api.AssignRouteApi
 import com.reciapp.gatherer.data.remote.api.AvailableRoutesApi
+import com.reciapp.gatherer.data.remote.api.FinishPointApi
 import com.reciapp.gatherer.data.remote.api.LoginApi
 import com.reciapp.gatherer.data.remote.api.MyRoutesApi
 import com.reciapp.gatherer.data.remote.api.StartRouteApi
@@ -41,5 +42,11 @@ val apiModule: Module = module {
         NetworkHelper.getRetrofitInstance(
             androidContext().resources.getString(R.string.start_route_base_url)
         ).create(StartRouteApi::class.java)
+    }
+
+    factory {
+        NetworkHelper.getRetrofitInstance(
+            androidContext().resources.getString(R.string.finish_point_route_base_url)
+        ).create(FinishPointApi::class.java)
     }
 }

@@ -64,7 +64,9 @@ class MyRoutesFragment : Fragment() {
                         val routes = it.routes
                         routesAdapter.setRoutes(it.routes)
                         if (routes.isEmpty()) {
-                            // TODO: View No Routes
+                            cnlNoAvailableRoutes.visibility = View.VISIBLE
+                        } else {
+                            cnlNoAvailableRoutes.visibility = View.GONE
                         }
                         hideLoaderViewWithDelay()
                     }

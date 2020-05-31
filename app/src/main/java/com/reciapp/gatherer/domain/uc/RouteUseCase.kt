@@ -1,6 +1,6 @@
 package com.reciapp.gatherer.domain.uc
 
-import com.reciapp.gatherer.data.mappers.RouteMapper
+import com.reciapp.gatherer.data.remote.models.point.FinishPointRequest
 import com.reciapp.gatherer.data.remote.models.route.AssignRouteRequest
 import com.reciapp.gatherer.data.remote.models.route.StartRouteRequest
 import com.reciapp.gatherer.domain.models.Route
@@ -26,6 +26,15 @@ class RouteUseCase(
             StartRouteRequest(
                 userId = userIdRepository.getUserId(),
                 routeId = routeId
+            )
+        )
+
+    fun finishPointRoute(routeId: String, pointId: String): Single<Route> =
+        routeRepository.finishPoint(
+            FinishPointRequest(
+                userId = userIdRepository.getUserId(),
+                routeId = routeId,
+                pointId = pointId
             )
         )
 }

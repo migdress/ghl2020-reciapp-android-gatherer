@@ -53,6 +53,7 @@ val repositoryModule: Module = module {
         RouteRepositoryImpl(
             assignRouteApi = get(),
             startRouteApi = get(),
+            finishPointApi = get(),
             mapper = get()
         )
     }

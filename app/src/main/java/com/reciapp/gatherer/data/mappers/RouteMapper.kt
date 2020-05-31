@@ -15,6 +15,7 @@ class RouteMapper {
             date = routeResponse.date,
             pickingPoints = routeResponse.pickingPoints.map {
                 Route.PickingPoint(
+                    id = it.id,
                     country = it.country,
                     city = it.city,
                     addressFirst = it.addressFirst,

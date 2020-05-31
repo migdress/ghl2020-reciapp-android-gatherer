@@ -2,11 +2,11 @@ package com.reciapp.gatherer.app.di
 
 import androidx.lifecycle.MutableLiveData
 import com.reciapp.gatherer.domain.models.Route
+import com.reciapp.gatherer.ui.viewmodels.AvailableRoutesViewModel
 import com.reciapp.gatherer.ui.viewmodels.HomeViewModel
 import com.reciapp.gatherer.ui.viewmodels.LoginViewModel
 import com.reciapp.gatherer.ui.viewmodels.MyRoutesViewModel
 import com.reciapp.gatherer.ui.viewmodels.RouteViewModel
-import com.reciapp.gatherer.ui.viewmodels.AvailableRoutesViewModel
 import com.reciapp.gatherer.ui.viewmodels.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -44,8 +44,9 @@ val viewModelModule: Module = module {
         RouteViewModel(
             routeInitial = route,
             routeUseCase = get(),
-            _routeAssignState = MutableLiveData(),
-            _routeStartState = MutableLiveData()
+            _assignRouteState = MutableLiveData(),
+            _startRouteState = MutableLiveData(),
+            _finishPointRouteState = MutableLiveData()
         )
     }
 
