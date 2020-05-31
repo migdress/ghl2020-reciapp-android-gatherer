@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/routesFragment"
-        android:icon="@drawable/ic_available_routes"
+        android:icon="@drawable/ic_route"
         android:title="@string/title_available_routes" />
     <item
         android:id="@+id/myRoutesFragment"
