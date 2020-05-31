@@ -10,7 +10,7 @@
         android:id="@+id/cnlHeader"
         android:layout_width="@dimen/size0dp"
         android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/shape_toolbar_login"
+        android:background="@drawable/shape_loading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

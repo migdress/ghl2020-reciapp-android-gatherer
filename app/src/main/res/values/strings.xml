@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:locale="es">
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyC-XJlwycf-W3RvxifB2lsQu3_Z0HT6AW0</string>
+    <string name="login_base_url" translatable="false">https://login.reciapp.quartrino.com/</string>
 
     <string name="app_name">ReciApp Gatherer</string>
 
@@ -18,6 +19,9 @@
     <string name="title_my_routes">Mis Rutas</string>
     <string name="title_info">Información</string>
     <string name="title_hello">Hola!</string>
+    <string name="title_loading">Procesando solicitud…</string>
 
     <string name="warning_permission_denied">Se requiere conocer tu ubicación</string>
+
+    <string name="error_server">A ocurrido un error, reintentalo de nuevo.</string>
 </resources>
