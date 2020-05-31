@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:locale="es">
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyC-XJlwycf-W3RvxifB2lsQu3_Z0HT6AW0</string>
+
     <string name="app_name">ReciApp Gatherer</string>
 
     <string name="btn_login">Ingresar</string>
     <string name="btn_view_route">Ver Ruta</string>
     <string name="btn_view_my_route">Mi Ruta</string>
+    <string name="btn_retry">Reintentar</string>
 
     <string name="hint_user">Usuario</string>
     <string name="hint_password">Contraseña</string>
@@ -15,4 +18,6 @@
     <string name="title_my_routes">Mis Rutas</string>
     <string name="title_info">Información</string>
     <string name="title_hello">Hola!</string>
+
+    <string name="warning_permission_denied">Se requiere conocer tu ubicación</string>
 </resources>

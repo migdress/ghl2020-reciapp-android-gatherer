@@ -68,11 +68,11 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilUsername"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
             android:layout_width="@dimen/size0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size16dp"
             android:layout_marginHorizontal="@dimen/size16dp"
+            android:layout_marginTop="@dimen/size16dp"
             android:hint="@string/hint_user"
             app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
             app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -82,6 +82,7 @@
                 android:id="@+id/tieUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:inputType="text"
                 android:lines="1"
                 android:textSize="@dimen/size14sp" />
@@ -90,7 +91,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
             android:layout_width="@dimen/size0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/size16dp"
@@ -104,6 +105,7 @@
                 android:id="@+id/tieUserPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
                 android:inputType="textPassword"
                 android:lines="1"
                 android:textSize="@dimen/size14sp" />
