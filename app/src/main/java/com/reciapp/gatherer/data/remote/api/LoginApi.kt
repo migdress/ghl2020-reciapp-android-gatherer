@@ -1,7 +1,7 @@
 package com.reciapp.gatherer.data.remote.api
 
-import com.reciapp.gatherer.data.remote.models.LoginRequest
-import com.reciapp.gatherer.data.remote.models.LoginResponse
+import com.reciapp.gatherer.data.remote.models.login.LoginRequest
+import com.reciapp.gatherer.data.remote.models.login.LoginResponse
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST

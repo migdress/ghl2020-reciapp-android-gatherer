@@ -1,6 +1,6 @@
 package com.reciapp.gatherer.data.mappers
 
-import com.reciapp.gatherer.data.remote.models.LoginResponse
+import com.reciapp.gatherer.data.remote.models.login.LoginResponse
 import com.reciapp.gatherer.domain.models.Login
 
 class LoginMapper {

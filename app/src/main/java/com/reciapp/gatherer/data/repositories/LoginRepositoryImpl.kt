@@ -2,7 +2,7 @@ package com.reciapp.gatherer.data.repositories
 
 import com.reciapp.gatherer.data.mappers.LoginMapper
 import com.reciapp.gatherer.data.remote.api.LoginApi
-import com.reciapp.gatherer.data.remote.models.LoginRequest
+import com.reciapp.gatherer.data.remote.models.login.LoginRequest
 import com.reciapp.gatherer.domain.models.Login
 import com.reciapp.gatherer.domain.repositories.LoginRepository
 import io.reactivex.Single

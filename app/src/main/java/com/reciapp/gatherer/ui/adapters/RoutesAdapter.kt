@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.reciapp.gatherer.R
 import com.reciapp.gatherer.domain.models.Route
+import com.reciapp.gatherer.utils.DateFormatConverter
 import kotlinx.android.synthetic.main.item_route.view.*
 
 class RoutesAdapter(
@@ -15,7 +16,7 @@ class RoutesAdapter(
 
     private val routes = mutableListOf<Route>()
 
-    private fun setRoutes(routes: List<Route>) {
+    fun setRoutes(routes: List<Route>) {
         this.routes.clear()
         this.routes.addAll(routes)
         this.notifyDataSetChanged()
@@ -36,13 +37,13 @@ class RoutesAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(route: Route) {
             itemView.txvSector.text = route.sector
-            itemView.txvDate.text = route.date
+            itemView.txvDate.text = DateFormatConverter.formatDate(route.date, DateFormatConverter.PatternDate.DATE_RFC3339, DateFormatConverter.PatternDate.DAY_NAME_AND_NUMBER)
             if (isMine) {
                 itemView.btnViewRoute.text = itemView.context.getString(R.string.btn_view_my_route)
             } else {
                 itemView.btnViewRoute.text = itemView.context.getString(R.string.btn_view_route)
             }
-            itemView.setOnClickListener {
+            itemView.btnViewRoute.setOnClickListener {
                 closure.invoke(route)
             }
         }

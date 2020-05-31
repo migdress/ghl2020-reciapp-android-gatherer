@@ -1,5 +1,9 @@
 package com.reciapp.gatherer.domain.models
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Route(
     val id: String,
     val materials: List<String>,
@@ -7,7 +11,8 @@ data class Route(
     val shift: String,
     val date: String,
     val pickingPoints: List<PickingPoint>
-) {
+) : Parcelable {
+    @Parcelize
     data class PickingPoint(
         val country: String,
         val city: String,
@@ -15,5 +20,5 @@ data class Route(
         val addressSecond: String,
         val latitude: Double,
         val longitude: Double
-    )
+    ) : Parcelable
 }

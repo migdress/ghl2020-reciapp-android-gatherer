@@ -2,12 +2,13 @@ package com.reciapp.gatherer.data.repositories
 
 import com.reciapp.gatherer.data.local.preferences.UserPreferences
 import com.reciapp.gatherer.domain.models.Login
+import com.reciapp.gatherer.domain.repositories.SaveUserRepository
 import com.reciapp.gatherer.domain.repositories.UserIdRepository
-import com.reciapp.gatherer.domain.repositories.UserRepository
+import com.reciapp.gatherer.domain.repositories.UserNameRepository
 
 class UserRepositoryImpl(
     private val userPreferences: UserPreferences
-) : UserRepository, UserIdRepository {
+) : SaveUserRepository, UserIdRepository, UserNameRepository {
 
     override fun saveUser(loginResponse: Login) {
         with(loginResponse) {
@@ -19,4 +20,6 @@ class UserRepositoryImpl(
     }
 
     override fun getUserId(): String = userPreferences.id
+
+    override fun getUserName(): String = "${userPreferences.firstName} ${userPreferences.lastName}"
 }

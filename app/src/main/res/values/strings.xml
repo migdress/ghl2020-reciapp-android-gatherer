@@ -2,6 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:locale="es">
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyC-XJlwycf-W3RvxifB2lsQu3_Z0HT6AW0</string>
     <string name="login_base_url" translatable="false">https://login.reciapp.quartrino.com/</string>
+    <string name="routes_available_base_url" translatable="false">https://get-available-routes.reciapp.quartrino.com/</string>
 
     <string name="app_name">ReciApp Gatherer</string>
 

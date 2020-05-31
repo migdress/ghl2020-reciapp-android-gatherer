@@ -21,6 +21,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
 import com.reciapp.gatherer.R
+import com.reciapp.gatherer.domain.models.Route
 import kotlinx.android.synthetic.main.activity_route.*
 
 class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -149,9 +150,12 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
         private const val FASTEST_INTERVAL: Long = 2000
         private const val DEFAULT_ZOOM = 16f
         private val DEFAULT_LOCATION = LatLng(4.6097102, -74.081749)
+        private const val ROUTE = "route"
 
-        fun launch(from: Context) {
-            from.startActivity(Intent(from, RouteActivity::class.java))
+        fun launch(from: Context, route: Route) {
+            from.startActivity(Intent(from, RouteActivity::class.java).apply {
+                putExtra(ROUTE, route)
+            })
         }
     }
 }

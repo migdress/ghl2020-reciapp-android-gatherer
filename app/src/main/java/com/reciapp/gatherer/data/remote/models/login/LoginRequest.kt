@@ -1,4 +1,4 @@
-package com.reciapp.gatherer.data.remote.models
+package com.reciapp.gatherer.data.remote.models.login
 
 import com.squareup.moshi.Json
 
