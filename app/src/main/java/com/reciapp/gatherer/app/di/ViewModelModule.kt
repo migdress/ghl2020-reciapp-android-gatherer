@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.reciapp.gatherer.domain.models.Route
 import com.reciapp.gatherer.ui.viewmodels.HomeViewModel
 import com.reciapp.gatherer.ui.viewmodels.LoginViewModel
+import com.reciapp.gatherer.ui.viewmodels.MyRoutesViewModel
 import com.reciapp.gatherer.ui.viewmodels.RouteViewModel
 import com.reciapp.gatherer.ui.viewmodels.RoutesAvailableViewModel
 import com.reciapp.gatherer.ui.viewmodels.SplashViewModel
@@ -44,6 +45,13 @@ val viewModelModule: Module = module {
             routeInitial = route,
             routeUseCase = get(),
             _routeAssignState = MutableLiveData()
+        )
+    }
+
+    viewModel {
+        MyRoutesViewModel(
+            routesUseCase = get(),
+            _myRoutesState = MutableLiveData()
         )
     }
 }

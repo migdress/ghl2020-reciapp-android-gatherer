@@ -2,7 +2,7 @@ package com.reciapp.gatherer.data.remote.models.routes
 
 import com.squareup.moshi.Json
 
-data class RoutesAvailableResponse(
-    @Json(name = "routes")
+data class MyRoutesResponse(
+    @Json(name = "assigned_routes")
     val routes: List<RouteResponse>
 )

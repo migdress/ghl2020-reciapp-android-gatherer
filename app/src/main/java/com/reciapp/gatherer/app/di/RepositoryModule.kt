@@ -1,10 +1,12 @@
 package com.reciapp.gatherer.app.di
 
 import com.reciapp.gatherer.data.repositories.LoginRepositoryImpl
+import com.reciapp.gatherer.data.repositories.MyRoutesRepositoryImpl
 import com.reciapp.gatherer.data.repositories.RouteRepositoryImpl
 import com.reciapp.gatherer.data.repositories.RoutesAvailableRepositoryImpl
 import com.reciapp.gatherer.data.repositories.UserRepositoryImpl
 import com.reciapp.gatherer.domain.repositories.LoginRepository
+import com.reciapp.gatherer.domain.repositories.MyRoutesRepository
 import com.reciapp.gatherer.domain.repositories.RouteRepository
 import com.reciapp.gatherer.domain.repositories.RoutesAvailableRepository
 import com.reciapp.gatherer.domain.repositories.SaveUserRepository
@@ -50,6 +52,13 @@ val repositoryModule: Module = module {
     factory<RouteRepository> {
         RouteRepositoryImpl(
             assignRouteApi = get()
+        )
+    }
+
+    factory<MyRoutesRepository> {
+        MyRoutesRepositoryImpl(
+            myRoutesApi = get(),
+            routeMapper = get()
         )
     }
 }

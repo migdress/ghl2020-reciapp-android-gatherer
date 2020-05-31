@@ -26,6 +26,7 @@ data class Route(
     enum class STATUS {
         AVAILABLE,
         ASSIGNED,
+        INITIATED,
         FINISHED
     }
 }

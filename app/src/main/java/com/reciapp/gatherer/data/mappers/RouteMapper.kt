@@ -1,16 +1,16 @@
 package com.reciapp.gatherer.data.mappers
 
-import com.reciapp.gatherer.data.remote.models.routes.RoutesAvailableResponse
+import com.reciapp.gatherer.data.remote.models.routes.RouteResponse
 import com.reciapp.gatherer.domain.models.Route
 
 class RouteMapper {
 
-    val mapToDomainRoute = fun(routeResponse: RoutesAvailableResponse.RouteResponse): Route {
+    val mapToDomainRoute = fun(routeResponse: RouteResponse): Route {
         return Route(
             id = routeResponse.id,
             materials = routeResponse.materials,
             sector = routeResponse.sector,
-            status = Route.STATUS.AVAILABLE,
+            status = getStatus(routeResponse.status),
             shift = routeResponse.shift,
             date = routeResponse.date,
             pickingPoints = routeResponse.pickingPoints.map {
@@ -24,5 +24,22 @@ class RouteMapper {
                 )
             }
         )
+    }
+
+    private fun getStatus(status: String): Route.STATUS {
+        return when (status) {
+            "assigned" -> {
+                Route.STATUS.ASSIGNED
+            }
+            "initiated" -> {
+                Route.STATUS.INITIATED
+            }
+            "finished" -> {
+                Route.STATUS.FINISHED
+            }
+            else -> {
+                Route.STATUS.AVAILABLE
+            }
+        }
     }
 }
