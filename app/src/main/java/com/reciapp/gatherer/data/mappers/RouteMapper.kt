@@ -1,6 +1,6 @@
 package com.reciapp.gatherer.data.mappers
 
-import com.reciapp.gatherer.data.remote.models.routes.RouteResponse
+import com.reciapp.gatherer.data.remote.models.route.RouteResponse
 import com.reciapp.gatherer.domain.models.Route
 
 class RouteMapper {

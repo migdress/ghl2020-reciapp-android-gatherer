@@ -28,7 +28,8 @@ import com.reciapp.gatherer.R
 import com.reciapp.gatherer.domain.models.Route
 import com.reciapp.gatherer.extensions.ui.hideLoaderView
 import com.reciapp.gatherer.extensions.ui.showLoaderView
-import com.reciapp.gatherer.ui.states.RouteAssignState
+import com.reciapp.gatherer.ui.states.AssignRouteState
+import com.reciapp.gatherer.ui.states.StartRouteState
 import com.reciapp.gatherer.ui.viewmodels.RouteViewModel
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_route.*
@@ -66,17 +67,33 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun initSubscriptions() {
-        routeViewModel.getRouteAssignStateLiveData().observe(this, Observer {
+        routeViewModel.getAssignRouteStateLiveData().observe(this, Observer {
             when (it) {
-                is RouteAssignState.Loading -> {
+                is AssignRouteState.Loading -> {
                     showLoaderView()
                 }
-                is RouteAssignState.Success -> {
+                is AssignRouteState.Success -> {
                     hideLoaderView()
-                    getLocationPermission()
                     setTitleButton(routeViewModel.route)
                 }
-                is RouteAssignState.Failure -> {
+                is AssignRouteState.Failure -> {
+                    hideLoaderView()
+                    Toast.makeText(this, R.string.error_server, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+        routeViewModel.getStartRouteStateLiveData().observe(this, Observer {
+            when (it) {
+                is StartRouteState.Loading -> {
+                    showLoaderView()
+                }
+                is StartRouteState.Success -> {
+                    hideLoaderView()
+                    setTitleButton(routeViewModel.route)
+                    setDataMap()
+                }
+                is StartRouteState.Failure -> {
                     hideLoaderView()
                     Toast.makeText(this, R.string.error_server, Toast.LENGTH_SHORT).show()
                 }
@@ -96,6 +113,9 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
                             routeViewModel.assignRoute()
                         }
                         Route.STATUS.ASSIGNED -> {
+                            routeViewModel.startRoute()
+                        }
+                        Route.STATUS.INITIATED -> {
                             routeViewModel.markPointComplete()
                         }
                         Route.STATUS.FINISHED -> {
@@ -119,6 +139,9 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
                 btnAction.setText(R.string.btn_i_collect)
             }
             Route.STATUS.ASSIGNED -> {
+                btnAction.setText(R.string.btn_start_route)
+            }
+            Route.STATUS.INITIATED -> {
                 btnAction.setText(R.string.btn_pick_up_point)
             }
             Route.STATUS.FINISHED -> {
@@ -143,6 +166,9 @@ class RouteActivity : AppCompatActivity(), OnMapReadyCallback {
             moveCamera(LatLng(it.latitude, it.longitude))
         }
         setMarkets(routeViewModel.route.pickingPoints)
+        /*if (routeViewModel.route.status == Route.STATUS.INITIATED) {
+            getLocationPermission()
+        }*/
     }
 
     private fun getLocationPermission() {

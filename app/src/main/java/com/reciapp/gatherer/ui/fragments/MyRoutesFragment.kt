@@ -62,10 +62,9 @@ class MyRoutesFragment : Fragment() {
                     }
                     is MyRoutesState.Success -> {
                         val routes = it.routes
+                        routesAdapter.setRoutes(it.routes)
                         if (routes.isEmpty()) {
                             // TODO: View No Routes
-                        } else {
-                            routesAdapter.setRoutes(it.routes)
                         }
                         hideLoaderViewWithDelay()
                     }

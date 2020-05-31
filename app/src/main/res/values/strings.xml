@@ -5,6 +5,7 @@
     <string name="routes_available_base_url" translatable="false">https://get-available-routes.reciapp.quartrino.com/</string>
     <string name="my_routes_base_url" translatable="false">https://get-assigned-routes.reciapp.quartrino.com/</string>
     <string name="assing_route_base_url" translatable="false">https://assign-picking-route.reciapp.quartrino.com/</string>
+    <string name="start_route_base_url" translatable="false">https://start-picking-route.reciapp.quartrino.com/</string>
 
     <string name="app_name">ReciApp Gatherer</string>
 
@@ -13,6 +14,7 @@
     <string name="btn_view_my_route">Mi Ruta</string>
     <string name="btn_retry">Reintentar</string>
     <string name="btn_i_collect">Yo Recojo</string>
+    <string name="btn_start_route">Comenzar Ruta</string>
     <string name="btn_pick_up_point">Recoger en punto</string>
     <string name="btn_finish_route">Terminé Ruta</string>
 
@@ -40,7 +42,7 @@
     <string name="general_third">3</string>
     <string name="general_fourth">4</string>
 
-    <string name="warning_permission_denied">Se requiere conocer tu ubicación</string>
+    <string name="warning_permission_denied">La ubicación te ayudara.</string>
 
     <string name="error_server">A ocurrido un error, reintentalo de nuevo.</string>
 </resources>

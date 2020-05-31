@@ -6,7 +6,7 @@ import com.reciapp.gatherer.ui.viewmodels.HomeViewModel
 import com.reciapp.gatherer.ui.viewmodels.LoginViewModel
 import com.reciapp.gatherer.ui.viewmodels.MyRoutesViewModel
 import com.reciapp.gatherer.ui.viewmodels.RouteViewModel
-import com.reciapp.gatherer.ui.viewmodels.RoutesAvailableViewModel
+import com.reciapp.gatherer.ui.viewmodels.AvailableRoutesViewModel
 import com.reciapp.gatherer.ui.viewmodels.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -34,9 +34,9 @@ val viewModelModule: Module = module {
     }
 
     viewModel {
-        RoutesAvailableViewModel(
+        AvailableRoutesViewModel(
             routesUseCase = get(),
-            _routesAvailableState = MutableLiveData()
+            _availableRoutesState = MutableLiveData()
         )
     }
 
@@ -44,7 +44,8 @@ val viewModelModule: Module = module {
         RouteViewModel(
             routeInitial = route,
             routeUseCase = get(),
-            _routeAssignState = MutableLiveData()
+            _routeAssignState = MutableLiveData(),
+            _routeStartState = MutableLiveData()
         )
     }
 

@@ -4,8 +4,8 @@ import com.reciapp.gatherer.data.remote.models.routes.RoutesAvailableResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 
-interface RoutesAvailableApi {
+interface AvailableRoutesApi {
 
     @GET("v1")
-    fun getRoutesAvailable(): Single<RoutesAvailableResponse>
+    fun getAvailableRoutes(): Single<RoutesAvailableResponse>
 }

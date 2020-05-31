@@ -15,14 +15,14 @@ import com.reciapp.gatherer.extensions.ui.hideLoaderViewWithDelay
 import com.reciapp.gatherer.extensions.ui.showLoaderView
 import com.reciapp.gatherer.ui.activities.RouteActivity
 import com.reciapp.gatherer.ui.adapters.RoutesAdapter
-import com.reciapp.gatherer.ui.states.RoutesAvailableState
-import com.reciapp.gatherer.ui.viewmodels.RoutesAvailableViewModel
+import com.reciapp.gatherer.ui.states.AvailableRoutesState
+import com.reciapp.gatherer.ui.viewmodels.AvailableRoutesViewModel
 import kotlinx.android.synthetic.main.fragment_routes.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RoutesFragment : Fragment() {
 
-    private val routesAvailableViewModel: RoutesAvailableViewModel by viewModel()
+    private val availableRoutesViewModel: AvailableRoutesViewModel by viewModel()
     private val routesAdapter: RoutesAdapter by lazy {
         RoutesAdapter(false, this::onClickRoute)
     }
@@ -43,7 +43,7 @@ class RoutesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        routesAvailableViewModel.getRoutesAvailable()
+        availableRoutesViewModel.getRoutesAvailable()
     }
 
     private fun initViews() {
@@ -53,22 +53,21 @@ class RoutesFragment : Fragment() {
     }
 
     private fun initSubscriptions() {
-        routesAvailableViewModel.getRoutesAvailableStateLiveData()
+        availableRoutesViewModel.getRoutesAvailableStateLiveData()
             .observe(viewLifecycleOwner, Observer {
                 when (it) {
-                    is RoutesAvailableState.Loading -> {
+                    is AvailableRoutesState.Loading -> {
                         showLoaderView()
                     }
-                    is RoutesAvailableState.Success -> {
+                    is AvailableRoutesState.Success -> {
                         val routes = it.routes
+                        routesAdapter.setRoutes(it.routes)
                         if (routes.isEmpty()) {
                             // TODO: View No Routes
-                        } else {
-                            routesAdapter.setRoutes(it.routes)
                         }
                         hideLoaderViewWithDelay()
                     }
-                    is RoutesAvailableState.Failure -> {
+                    is AvailableRoutesState.Failure -> {
                         hideLoaderView()
                         Toast.makeText(this.context, R.string.error_server, Toast.LENGTH_SHORT)
                             .show()

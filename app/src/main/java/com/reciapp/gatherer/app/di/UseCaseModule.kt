@@ -31,7 +31,7 @@ val useCasesModule: Module = module {
 
     factory {
         RoutesUseCase(
-            routesAvailableRepository = get(),
+            availableRoutesRepository = get(),
             myRoutesRepository = get(),
             userIdRepository = get()
         )

@@ -1,11 +1,11 @@
-package com.reciapp.gatherer.data.remote.models.routes
+package com.reciapp.gatherer.data.remote.models.route
 
 import com.squareup.moshi.Json
 
 data class PickingPointResponse(
     @Json(name = "id")
     val id: String,
-    @Json(name = "locationid")
+    @Json(name = "location_id")
     val locationId: String,
     @Json(name = "country")
     val country: String,

@@ -3,7 +3,7 @@ package com.reciapp.gatherer.domain.repositories
 import com.reciapp.gatherer.domain.models.Route
 import io.reactivex.Single
 
-interface RoutesAvailableRepository {
+interface AvailableRoutesRepository {
 
-    fun getRoutesAvailable(): Single<List<Route>>
+    fun getAvailableRoutes(): Single<List<Route>>
 }
