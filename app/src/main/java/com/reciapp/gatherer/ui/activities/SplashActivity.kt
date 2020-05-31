@@ -3,14 +3,16 @@ package com.reciapp.gatherer.ui.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.reciapp.gatherer.R
+import com.reciapp.gatherer.extensions.rx.applySchedulers
+import com.reciapp.gatherer.ui.viewmodels.SplashViewModel
 import io.reactivex.Completable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
 
 class SplashActivity : AppCompatActivity() {
 
+    private val splashViewModel: SplashViewModel by viewModel()
     private val compositeDisposable: CompositeDisposable by lazy {
         CompositeDisposable()
     }
@@ -25,10 +27,13 @@ class SplashActivity : AppCompatActivity() {
         compositeDisposable.add(
             Completable.complete()
                 .delay(DELAY_VIEW, TimeUnit.SECONDS)
-                .observeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .applySchedulers()
                 .subscribe {
-                    LoginActivity.launch(this)
+                    if (splashViewModel.isUserLogged()) {
+                        HomeActivity.launch(this)
+                    } else {
+                        LoginActivity.launch(this)
+                    }
                     finish()
                 }
         )
